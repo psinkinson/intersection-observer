@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <style>
+            .section{
+                width: 90%;
+                margin: 50px auto;
+                padding: 50px 0;
+                text-align: center;
+                background-color: rgb(174, 219, 174);
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .section_left,
+            .section_right {
+                width: 50%;
+                display: inline-block;
+                float: left;
+            }
+            .section_left img, .section_right img {
+                margin: 1opx;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <div class="section_left">
+                <img class="img-1-1" src="https://picsum.photos/350?random" width="350" height="350">
+            </div>
+            <div class="section_right">
+                <img class="img-1-1" src="https://picsum.photos/350?random" width="350" height="350">
+            </div>
+        </div>
+        <div class="section lazy-section">
+            <div class="section_left">
+                <img class="img-2-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
+            </div>
+            <div class="section_right">
+                <img class="img-2-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
+            </div>    
+        </div>
+        <div class="section lazy-section">
+            <div class="section_left">
+                <img class="img-3-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
+            </div>
+            <div class="section_right">
+                <img class="img-3-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
+            </div>    
+        </div>
+        <script src="intersection-observer.js"></script>
+        <script>
+        (function() {
+            
+            // create observer
+            let observer = new IntersectionObserver(onChange, {threshold: [0.5]});
+
+            function onChange(changes) {
+                changes.forEach(change => {
+                    console.log('change', change.intersectionRatio);
+                    if (change.intersectionRatio > 0) {
+                        
+                        var imgs = change.target.getElementsByClassName('lazy-image');
+                        console.log('images in section', imgs.length);
+                        for(var img of imgs) {
+                            console.log('image in section', img);
+                            // take image url from `data-src` attribute
+                            img.src = img.dataset.src;
+                        };
+                        
+
+                        // stop observing the current target
+                        observer.unobserve(change.target);
+                    }
+                    
+                });
+            }
+
+            // convert node list to array
+            var sections = document.getElementsByClassName('lazy-section');
+
+            for(i =0; i < sections.length; i++) {
+                observer.observe(sections[i])
+            };
+
+        }());
+        </script>
+    </body>
+</html>
