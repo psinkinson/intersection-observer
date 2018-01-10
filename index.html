@@ -1,51 +1,72 @@
 <html>
     <head>
         <style>
-            .section{
+            body {
+                font-family: sans-serif;
+            }
+            img{
+                background-color: cornflowerblue;
+            }
+            .intro, .section {
                 width: 90%;
+                
+                border: 1px dashed rgb(97, 136, 97);
+                background-color: rgb(174, 219, 174);
+            }
+            .intro {
+                height: 100%;
+                margin: 0 auto;
+            }
+            .intro p {
+                margin: 20px;
+            }
+            .section{
+                
                 margin: 50px auto;
                 padding: 50px 0;
-                text-align: center;
-                background-color: rgb(174, 219, 174);
+                
                 content: "";
                 display: table;
                 clear: both;
             }
-            .section_left,
-            .section_right {
-                width: 50%;
-                display: inline-block;
-                float: left;
+            
+            .section p{
+                padding: 0 20px;
             }
-            .section_left img, .section_right img {
-                margin: 1opx;
+            .section_right {
+                text-align: center;
+            }
+            
+            img {
+                width: 30%;
+                margin: 1.5%;
             }
         </style>
     </head>
     <body>
-        <div class="section">
-            <div class="section_left">
-                <img class="img-1-1" src="https://picsum.photos/350?random" width="350" height="350">
-            </div>
-            <div class="section_right">
-                <img class="img-1-1" src="https://picsum.photos/350?random" width="350" height="350">
-            </div>
+        
+        <div class="intro">
+            <p>
+                The following section contains lazy loaded images.
+            </p>
+            <p>
+                It is watched by an IntersectionObserver, which fires a callback when the section scrolls into view. 
+            </p>
+            <p>
+                The callback finds the images contained in the section and sets the src attribute to load the images.
+            </p>
         </div>
         <div class="section lazy-section">
-            <div class="section_left">
-                <img class="img-2-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
-            </div>
-            <div class="section_right">
-                <img class="img-2-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
-            </div>    
-        </div>
-        <div class="section lazy-section">
-            <div class="section_left">
-                <img class="img-3-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
-            </div>
-            <div class="section_right">
-                <img class="img-3-1 lazy-image" data-src="https://picsum.photos/350?random" width="350" height="350">
-            </div>    
+            <p>Images will load when this section is 1/4 in view</p>
+                <img class="img-1 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-2 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-3 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-4 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-5 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-6 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-7 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-8 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
+                <img class="img-9 lazy-image" data-src="https://picsum.photos/100?random" width="100" height="100">
         </div>
         <script src="intersection-observer.js"></script>
         <script>
